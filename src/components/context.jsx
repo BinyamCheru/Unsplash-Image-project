@@ -2,18 +2,23 @@ import { createContext, useEffect, useState } from "react";
 
 const AppContext = createContext();
 
+// const getInitialDarkMode = () => {
+//   const storedDarkMode = localStorage.getItem("darkTheme");
+//   return storedDarkMode !== null
+//     ? storedDarkMode === "true"
+//     : window.matchMedia("(prefers-color-scheme: dark)").matches;
+// };
+
 const getInitialDarkMode = () => {
   const prefersDarkMode = window.matchMedia(
     "(prefers-color-scheme:dark)"
   ).matches;
   // console.log(prefersDarkMode);
   // console.log(typeof(localStorage.getItem("darkTheme"))); it is string
-  const storedDarkMode =
-    localStorage.getItem("darkTheme") === null
-      ? null
-      : localStorage.getItem("darkTheme") === "true";
 
-  return storedDarkMode === null ? prefersDarkMode : storedDarkMode;
+  const storedDarkMode = localStorage.getItem("darkTheme");
+
+  return storedDarkMode !== null ? storedDarkMode === "true" : prefersDarkMode;
 };
 
 export const AppProvider = ({ children }) => {
