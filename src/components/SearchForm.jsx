@@ -1,11 +1,14 @@
-const SearchForm = () => {
-  const API_KEY = "BOa2qXHkefvX8hlL4VwkS-CMlmbjtoBDG3_BRXYhinE";
+import useGlobalContext from "./useGlobalContext";
 
+const SearchForm = () => {
+  const { setSearchTerm } = useGlobalContext();
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     const searchValue = e.target.elements.search.value;
     if (!searchValue) return;
-    console.log(searchValue);
+    setSearchTerm(searchValue);
+    console.log(searchValue); 
   };
   return (
     <section>
